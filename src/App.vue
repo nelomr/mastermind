@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ColorButton 
+      v-for="(color, index) in colorArray" 
+      :key="'color'+index"
+      :color="color" 
+    />
+    <button @click="getGames()">Get games</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ColorButton from './components/ColorButton/ColorButton';
+import { getGame } from './api/apiGame';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ColorButton
+  },
+  data() {
+    return {
+      colorArray: ['blue', 'blue', 'orange', 'red']
+    }
+  },
+  methods: {
+    getGames() {
+      getGame();
+    }
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

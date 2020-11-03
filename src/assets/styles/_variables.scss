@@ -1,0 +1,22 @@
+@import "../../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+
+/* breakpoints */
+
+$min-tablet: min-width 480px;
+$min-desktop: min-width 768px;
+$min-desktop-xlarge: min-width 1280px;
+$min-desktop-xxlarge: min-width 1440px;
+
+/* colors */
+
+$red-color: #D43B36;
+$blue-color: #68C9EE;
+$blue-medium-color: #97ABDA;
+$green-color: #5FB88C;
+$green-light-color: #C9E8DC;
+$orange-color: #E6B94C;
+$black-color: #000000;
+$pink-color: #D48AD5;
+$grey-color: #F4F4F4;
+$text-color: #5A5A5A;
+$light-color: #FFFFFF;
