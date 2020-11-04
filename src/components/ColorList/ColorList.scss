@@ -1,0 +1,9 @@
+.color-list {
+    display: flex;
+    margin-right: 30px;
+
+    @include breakpoint($min-desktop) {
+        flex-direction: column;
+        margin-right: 30px;
+    }
+}

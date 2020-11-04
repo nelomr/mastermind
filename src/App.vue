@@ -1,32 +1,28 @@
 <template>
-  <div id="app">
-    <ColorButton 
-      v-for="(color, index) in colorArray" 
-      :key="'color'+index"
-      :color="color" 
-    />
-    <button @click="getGames()">Get games</button>
+  <div id="app" class="container">
+    <div class="app--title">
+      <h1>Mastermind</h1>
+      <div></div>
+    </div>
+    <div class="board-coantainer">
+      <ColorList />
+      <MainBoard />
+      <ControlsBoard />
+    </div>
   </div>
 </template>
 
 <script>
-import ColorButton from './components/ColorButton/ColorButton';
-import { getGame } from './api/apiGame';
+import ColorList from '@/components/ColorList/ColorList';
+import MainBoard from '@/components/MainBoard/MainBoard';
+import ControlsBoard from '@/components/ControlsBoard/ControlsBoard';
 
 export default {
   name: 'App',
   components: {
-    ColorButton
-  },
-  data() {
-    return {
-      colorArray: ['blue', 'blue', 'orange', 'red']
-    }
-  },
-  methods: {
-    getGames() {
-      getGame();
-    }
+    ColorList,
+    MainBoard,
+    ControlsBoard
   }
 }
 </script>

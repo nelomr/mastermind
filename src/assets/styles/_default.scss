@@ -4,15 +4,46 @@ body {
   margin: 0;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
+  color: $text-color;
+  background-color: $grey-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
 }
 
 #app {
+  padding: 150px 0;
   height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2C3E50;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+.app--title {
+  margin-bottom: 40px;
+}
+
+.container {
+  max-width: 730px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.board-coantainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include breakpoint($min-desktop) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 img {

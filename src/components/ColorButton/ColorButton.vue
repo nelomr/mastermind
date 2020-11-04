@@ -1,5 +1,5 @@
 <template>
-    <div class="color-button" :class="`is-${ color }`"></div>
+    <div class="color-button" :style="`background-color: ${ color }`"></div>
 </template>
 
 <script>
