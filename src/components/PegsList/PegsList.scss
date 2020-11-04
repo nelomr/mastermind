@@ -1,0 +1,13 @@
+.row-board--pegs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40px;
+  margin: 0 -5px;
+}
+
+.peg-item {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px 5px;
+  border-radius: 50%;
+}

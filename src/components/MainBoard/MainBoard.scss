@@ -1,7 +1,16 @@
 .main-board {
     width: calc(100% - 175px);
     padding: 40px 20px 40px 80px;
+    margin: 40px 0;
     background-color: $light-color;
     border-radius: 15px;
     box-shadow: 0px 2px 10px -2px $grey-color;
+
+    @include breakpoint($min-desktop) {
+        margin: 0 40px;
+    }
+}
+
+.controls-board--check {
+    margin-bottom: 20px;
 }

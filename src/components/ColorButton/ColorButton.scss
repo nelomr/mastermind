@@ -1,19 +1,39 @@
 .color-button {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
+  color: $red-color;
+  cursor: pointer;
+  border-radius: 50%;
+  background: transparent;
+  transition: all .3s ease;
+
+  &.is-option-color {
     margin-right: 20px;
     margin-bottom: 0;
-    color: $red-color;
-    cursor: pointer;
-    border-radius: 50%;
+    opacity: 0;
 
     &:last-child {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
-
+  
+    .is-loaded & {
+      opacity: 1;
+  
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          transition-delay: ($i * 0.1s);
+        }
+      }
+    }
+  
+    &.is-selected {
+      box-shadow: 0 0 8px 6px currentColor;
+    }
+  
     @include breakpoint($min-desktop) {
-        margin-right: 0;
-        margin-bottom: 20px;
+      margin-right: 0;
+      margin-bottom: 20px;
     }
+  }
 }
 

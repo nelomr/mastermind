@@ -1,11 +1,14 @@
 <template>
-    <div class="color-list">
-        <ColorButton 
-            v-for="(color, index) in listColors" 
-            :key="'color'+index"
-            :color="color" 
-        />
-    </div>
+  <div class="color-list" :class="{'is-loaded': loaded }">
+    <ColorButton 
+      v-for="(color, index) in listColors" 
+      :key="'color'+index"
+      @clicked="onClickButton"
+      :color="color"
+      :index="index"
+      :class="{'is-selected': indexSelected == index }"
+    />
+  </div>
 </template>
 <script>
 import ColorButton from '@/components/ColorButton/ColorButton';
@@ -14,20 +17,23 @@ import { mapState } from 'vuex';
 export default {
     name: 'ColorList',
     components: {
-        ColorButton
+      ColorButton
     },
     data() {
-        return {
-            prueba: null
-        }
+      return {
+        indexSelected: null
+      }
     },
     computed: {
-        ...mapState([
-           'listColors'
-        ])
+      ...mapState([
+        'listColors',
+        'loaded'
+      ])
     },
-    updated() {
-        this.prueba = 'update'
+    methods: {
+      onClickButton(value) {
+        this.indexSelected = value;
+      }
     }
 }
 </script>

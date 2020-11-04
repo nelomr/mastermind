@@ -1,0 +1,37 @@
+.primary-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 120px;
+    padding: 8px 10px;
+    outline: none;
+    appearance: none;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 25px;
+    color: $blue-color;
+    cursor: pointer;
+    background-color: $light-color;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.secondary-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+    background-color: $light-color;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    &:disabled {
+        opacity: .4;
+    }
+}
