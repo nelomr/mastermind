@@ -23,6 +23,25 @@ export default {
   setCode(state, code) {
     state.code = code;
   },
+  resetCode(state) {
+    state.code = [];
+    state.guessRowColors = [];
+  },
+  pegsColorSolution(state, pegsWhite, pegsBlack){
+    if(pegsWhite.length > 0) {
+      pegsWhite.forEach(() => {
+        state.pegsColor.push('white');
+      });
+    }
+    if(pegsBlack.length > 0) {
+      pegsWhite.forEach(() => {
+        state.pegsColor.push('black');
+      });
+    }
+    while(state.pegsColor.length < 4) {
+      state.pegsColor.push('gray');
+    }
+  },
   addColorToCheck(state, {color, indexArray}) {
     state.code[indexArray] = color;
     Vue.set(state, 'code', [...state.code]);

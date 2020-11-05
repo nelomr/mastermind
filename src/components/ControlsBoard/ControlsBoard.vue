@@ -2,7 +2,7 @@
   <div class="controls-board">
     <div v-if="game" class="controls-board--butons">
       <button @click="sentCheckGuesses()" class="controls-board--check secondary-button" :disabled="!enableCheck"><IconCheck /></button>
-      <button @click="reset()" class="controls-board--reset secondary-button" :disabled="codeLength == 0"><IconRefresh /></button>
+      <button @click="resetRow()" class="controls-board--reset secondary-button" :disabled="codeLength == 0"><IconRefresh /></button>
     </div>
     <button @click.prevent="newGame(), reset()" class="controls-board--buton primary-button">New game</button>
   </div>
@@ -10,8 +10,7 @@
 
 <script>
 import EventBus from '@/modules/event-bus';
-import { mapActions } from 'vuex';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import IconCheck from '@/components/icons/IconCheck';
 import IconRefresh from '@/components/icons/IconRefresh';
 
@@ -40,11 +39,16 @@ export default {
     methods: {
     ...mapActions({
       newGame: 'createGame',
-      sentCheckGuesses: 'sentCheckGuesses'
+      sentCheckGuesses: 'sentCheckGuesses',
+      resetCode: 'resetCode'
     }),
     reset() {
       EventBus.$emit('reset');
-    }
+    },
+    resetRow() {
+      EventBus.$emit('resetRow');
+      this.resetCode();
+    },
   }
 }
 </script>

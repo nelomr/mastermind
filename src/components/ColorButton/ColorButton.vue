@@ -40,13 +40,17 @@ export default {
   computed: {
     ...mapState([
       'currentColor',
-      'guessRowColors'
+      'guessRowColors',
+      'row'
     ])
   },
   created() {
     EventBus.$on('reset', () => {
       this.reset();
-    })
+    });
+    EventBus.$on('resetRow', () => {
+      this.resetRow();
+    });
   },
   methods: {
     ...mapMutations([
@@ -68,6 +72,9 @@ export default {
     },
     reset() {
       Object.assign(this.$data,this.$options.data.call(this));
+    },
+    resetRow() {
+      (this.row === this.indexRow) && Object.assign(this.$data,this.$options.data.call(this));
     }
   }
 }

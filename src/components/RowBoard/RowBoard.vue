@@ -10,7 +10,10 @@
         :indexRow="indexRow"
       />
     </div>
-    <PegsList :numSlots="defaultConfig.num_slots" />
+    <PegsList 
+      :numSlots="defaultConfig.num_slots"
+      :indexRow="indexRow"
+    />
   </div>
 </template>
 
@@ -36,7 +39,7 @@ export default {
       game: state => state.game,
       defaultConfig: state => state.defaultConfig,
       currentGuess: state => state.currentGuess,
-      code: state => state.code,
+      code: state => state.code
     }),
     setIndexRow() {
       return this.indexRow <9 ? `0${this.indexRow+1}`: this.indexRow+1

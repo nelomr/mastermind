@@ -10,6 +10,7 @@ export function getDefaultState() {
     listColors: null,
     guessRowColors: [],
     code: [],
+    pegsColors: [],
     currentColor: null,
     currentGuess: null,
     loaded: false
