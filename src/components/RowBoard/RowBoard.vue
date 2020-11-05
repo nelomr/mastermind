@@ -36,7 +36,6 @@ export default {
   },
   computed: {
     ...mapState({
-      game: state => state.game,
       defaultConfig: state => state.defaultConfig,
       currentGuess: state => state.currentGuess,
       code: state => state.code

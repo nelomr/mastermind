@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { initNewGame, addNewGuesses } from '@/api/apiGame';
 
 export default {
@@ -9,6 +8,7 @@ export default {
       commit('setListColors', result.colors);
     }).then( () => {
       commit('isLoaded');
+      commit('setStatus');
       dispatch('setCurrentGuess', state.row);
     })
     .catch(error => { console.log(error); });
@@ -22,35 +22,33 @@ export default {
   resetCode({commit}) {
     commit('resetCode');
   },
-  addPegsColor({state}){
-    Vue.set(state, 'pegsColors', []);
+  addPegsColor({state, commit}){
     const whitePegs = state.game.guesses[state.row - 1].white_pegs;
     const blackPegs = state.game.guesses[state.row - 1].black_pegs;
-    
-    for (let index = 0; index < whitePegs; index+=1) {
-      state.pegsColors.push('white');
-    }
-    Vue.set(state.pegsColors, 0, [...state.pegsColors]);
-    for (let index = 0; index < blackPegs; index+=1) {
-      state.pegsColors.push('black');
-    }
-    Vue.set(state.pegsColors, 0, [...state.pegsColors]);
     const failPegsNumber = 4 - (whitePegs + blackPegs);
-    
-    for (let index = 0; index < failPegsNumber; index+=1) {
-      state.pegsColors.push('gray')
+
+    for (let index = 0; index < blackPegs; index+=1) {
+      commit('addPegColorResponse', state.pegsColorOption.exact);
     }
-    Vue.set(state.pegsColors, 0, [...state.pegsColors]);
-    console.log(state.pegsColors);
+
+    for (let index = 0; index < whitePegs; index+=1) {
+      commit('addPegColorResponse', state.pegsColorOption.partial);
+    }
+   
+    for (let index = 0; index < failPegsNumber; index+=1) {
+      commit('addPegColorResponse', state.pegsColorOption.default)
+    }
+    commit('setPegsRowColors');
   },
   async sentCheckGuesses({dispatch, commit, state}) {
-    let data = {};
+    const data = {};
     data.code = state.code;
     await addNewGuesses(state.game.id, data).then(result => {
       dispatch('resetCode');
       commit('updateGame', result.data);
       dispatch('setCurrentGuess', state.row+=1);
     }).then( () => {
+      commit('setStatus');
       dispatch('addPegsColor');
     })
     .catch(error => { console.log(error); });

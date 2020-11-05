@@ -1,12 +1,17 @@
 <template>
   <div 
-    :style="`background-color: ${ colorDefined };`"
+    :class="{'is-white': newColor === pegsColorOption}"
+    :style="`background-color: ${ newColor };`"
     class="peg-item"
-  />
+  >
+
+  </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  name: 'PegsList',
+  name: 'PegsItem',
   props: {
     color: {
       type: String,
@@ -15,8 +20,21 @@ export default {
   },
   data() {
     return {
-      colorDefined: this.color,
+      currentColor: this.color
+    }
+  },
+  computed: {
+    ...mapState({
+      row: state => state.row,
+      pegsArray: state => state.pegsColors,
+      pegsColorOption: state => state.pegsColorOption.partial
+    }),
+    newColor() {
+      return this.color;
     }
   }
 }
 </script>
+<style lang="scss">
+  @import "./PegItem.scss";
+</style>

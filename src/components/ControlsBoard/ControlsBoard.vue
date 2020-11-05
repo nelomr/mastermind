@@ -5,6 +5,7 @@
       <button @click="resetRow()" class="controls-board--reset secondary-button" :disabled="codeLength == 0"><IconRefresh /></button>
     </div>
     <button @click.prevent="newGame(), reset()" class="controls-board--buton primary-button">New game</button>
+    <div v-if="manageStatus" class="controls-board--status" v-text="manageTextStatus"></div>
   </div>
 </template>
 
@@ -23,8 +24,15 @@ export default {
     computed: {
       ...mapState({
         code: state => state.code,
-        game: state => state.game
+        game: state => state.game,
+        status: state => state.status
       }),
+      manageStatus() {
+        return this.status === 'won' || this.status === 'lost'
+      },
+      manageTextStatus() {
+        return this.status === 'won' ? 'You win': (this.status === 'lost') ? 'You lose': '';
+      },
       numberSlots() {
         return this.game.num_slots;
       },
@@ -48,7 +56,7 @@ export default {
     resetRow() {
       EventBus.$emit('resetRow');
       this.resetCode();
-    },
+    }
   }
 }
 </script>

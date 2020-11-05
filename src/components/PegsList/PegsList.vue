@@ -27,21 +27,17 @@ export default {
   },
   computed: {
     ...mapState({
-      game: state => state.game,
-      row: state => state.row,
-      pegsArray: state => state.pegsColors
+      rowsPegs: state => state.rowsPegs,
+      pegsColorDefault: state => state.pegsColorOption.default
     }),
     pegsColors() {
-      //console.log(this.indexRow, this.row, this.pegsArray);
-      if(this.indexRow == (this.row - 1)) {
-        return this.pegsArray.length > 0 ? this.pegsArray : this.defaultColorsArray;
-      }
-      return this.defaultColorsArray;
+        return this.rowsPegs.length > 0 && this.rowsPegs[this.indexRow] 
+          ? this.rowsPegs[this.indexRow] : this.defaultColorsArray;
     },
     defaultColorsArray() {
       let array = [];
       for (let index = 0; index < this.numSlots; index+=1) {
-        array.push('gray');
+        array.push(this.pegsColorDefault);
       }
       return array;
     }

@@ -23,24 +23,19 @@ export default {
   setCode(state, code) {
     state.code = code;
   },
+  setStatus(state){
+    state.status = state.game.status;
+  },
   resetCode(state) {
     state.code = [];
     state.guessRowColors = [];
   },
-  pegsColorSolution(state, pegsWhite, pegsBlack){
-    if(pegsWhite.length > 0) {
-      pegsWhite.forEach(() => {
-        state.pegsColor.push('white');
-      });
-    }
-    if(pegsBlack.length > 0) {
-      pegsWhite.forEach(() => {
-        state.pegsColor.push('black');
-      });
-    }
-    while(state.pegsColor.length < 4) {
-      state.pegsColor.push('gray');
-    }
+  addPegColorResponse(state, color) {
+    state.currentRowPegs.push(color);
+  },
+  setPegsRowColors(state) {
+    state.rowsPegs.push(state.currentRowPegs);
+    state.currentRowPegs = [];
   },
   addColorToCheck(state, {color, indexArray}) {
     state.code[indexArray] = color;
