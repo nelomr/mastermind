@@ -1,0 +1,36 @@
+.row-board {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  opacity: .5;
+  pointer-events: none;
+  transition: opacity .3s ease;
+
+  @include breakpoint($min-desktop) {
+    margin-bottom: 40px;
+  }
+
+  &.is-current {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.row-board--index {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.row-board--guesses {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+
+  @include breakpoint($min-desktop) {
+    padding: 0 30px 0 60px;
+  }
+}

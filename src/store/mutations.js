@@ -1,6 +1,12 @@
+import Vue from 'vue';
+import {getDefaultState} from '@/store/defaultState';
+
 export default {
-  setGame(state, game) {
+  updateGame(state, game) {
     state.game = game;
+  },
+  resetState (state) {
+    Object.assign(state, getDefaultState())
   },
   setListColors(state, listColors) {
     state.listColors = listColors;
@@ -10,5 +16,16 @@ export default {
   },
   setCurrentColor(state, color) {
     state.currentColor = color;
+  },
+  setCurrentGuess(state, index) {
+    state.currentGuess = index;
+  },
+  setCode(state, code) {
+    state.code = code;
+  },
+  addColorToCheck(state, {color, indexArray}) {
+    state.code[indexArray] = color;
+    Vue.set(state, 'code', [...state.code]);
+    state.guessRowColors.splice(0,1, state.code);
   }
 }

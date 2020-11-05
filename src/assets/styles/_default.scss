@@ -25,22 +25,17 @@ h5 {
   text-align: center;
 }
 
-.app--title {
-  margin-bottom: 40px;
-}
-
 .container {
-  max-width: 730px;
+  max-width: 960px;
   padding: 0 15px;
   margin: 0 auto;
 }
 
 .board-coantainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
 
   @include breakpoint($min-desktop) {
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
   }

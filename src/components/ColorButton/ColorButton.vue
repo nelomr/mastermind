@@ -2,14 +2,15 @@
   <div 
     @click="manageEvent(index)"
     class="color-button"
-    :class="{'is-option-color': !isGuessButton}"
+    :class="{'is-option-color': !isGuessButton, 'is-white': colorDefined === 'white'}"
     :style="`background-color: ${ colorDefined }; color: ${ colorDefined };`"
   >
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import EventBus from '@/modules/event-bus';
+import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
   name: 'ColorButton',
@@ -19,6 +20,10 @@ export default {
       default: 'lightgray'
     },
     index: {
+      type: Number,
+      default: 0
+    },
+    indexRow: {
       type: Number,
       default: 0
     },
@@ -34,12 +39,21 @@ export default {
   },
   computed: {
     ...mapState([
-      'currentColor'
+      'currentColor',
+      'guessRowColors'
     ])
+  },
+  created() {
+    EventBus.$on('reset', () => {
+      this.reset();
+    })
   },
   methods: {
     ...mapMutations([
       'setCurrentColor'
+    ]),
+    ...mapActions([
+      'addColorToCheck'
     ]),
     manageEvent(index) {
       this.isGuessButton ? this.setColor(index) : this.getColor(index);
@@ -49,8 +63,11 @@ export default {
       this.$emit('clicked', index);
     },
     setColor(index) {
+      this.currentColor != null && this.addColorToCheck({color: this.currentColor, indexArray: index});
       this.colorDefined = this.currentColor;
-      this.$emit('clicked', index);
+    },
+    reset() {
+      Object.assign(this.$data,this.$options.data.call(this));
     }
   }
 }

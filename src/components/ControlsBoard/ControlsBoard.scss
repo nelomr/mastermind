@@ -1,9 +1,23 @@
 .controls-board {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-direction: column;
 }
 
+.controls-board--butons {
+  display: flex;
+  justify-content: center;
+
+  @include breakpoint($min-desktop) {
+    flex-direction: column;
+  }
+}
+
 .controls-board--buton {
-  margin-top: 100px;
+  margin-top: 30px;
+
+  @include breakpoint($min-desktop) {
+    margin-top: 100px;
+  }
 }

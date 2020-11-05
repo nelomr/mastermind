@@ -1,13 +1,13 @@
 <template>
-  <div class="row-board">
+  <div class="row-board" :class="{'is-current': indexRow === currentGuess}">
     <div class="row-board--index" v-text="setIndexRow" />
     <div class="row-board--guesses">
       <ColorButton 
         v-for="(color, index) in defaultConfig.num_slots"
         :key="'color'+index"
-        @clicked="onClickButton"
         :isGuessButton="true"
         :index="index"
+        :indexRow="indexRow"
       />
     </div>
     <PegsList :numSlots="defaultConfig.num_slots" />
@@ -22,7 +22,7 @@ import PegsList from '@/components/PegsList/PegsList';
 export default {
   name: 'RowBoard',
   props: {
-    index: {
+    indexRow: {
       type: Number,
       default: 0
     }
@@ -34,16 +34,16 @@ export default {
   computed: {
     ...mapState({
       game: state => state.game,
-      defaultConfig: state => state.defaultConfig
+      defaultConfig: state => state.defaultConfig,
+      currentGuess: state => state.currentGuess,
+      code: state => state.code,
     }),
     setIndexRow() {
-      return this.index <9 ? `0${this.index+1}`: this.index+1
-    }
-  },
-  methods: {
-    onClickButton(value) {
-      console.log(value)
+      return this.indexRow <9 ? `0${this.indexRow+1}`: this.indexRow+1
     }
   }
 }
 </script>
+<style lang="scss">
+  @import "./RowBoard.scss";
+</style>
