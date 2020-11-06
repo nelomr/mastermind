@@ -17,8 +17,8 @@ export default {
   setCurrentColor(state, color) {
     state.currentColor = color;
   },
-  setCurrentGuess(state, index) {
-    state.currentGuess = index;
+  setRow(state, index) {
+    state.row = index;
   },
   setCode(state, code) {
     state.code = code;

@@ -1,5 +1,5 @@
 <template>
-  <div class="row-board" :class="{'is-current': indexRow === currentGuess}">
+  <div class="row-board" :class="{'is-current': indexRow === row}">
     <div class="row-board--index" v-text="setIndexRow" />
     <div class="row-board--guesses">
       <ColorButton 
@@ -35,13 +35,13 @@ export default {
     PegsList
   },
   computed: {
-    ...mapState({
-      defaultConfig: state => state.defaultConfig,
-      currentGuess: state => state.currentGuess,
-      code: state => state.code
-    }),
+    ...mapState([
+      'defaultConfig',
+      'row',
+      'code'
+    ]),
     setIndexRow() {
-      return this.indexRow <9 ? `0${this.indexRow+1}`: this.indexRow+1
+      return this.indexRow < 9 ? `0${this.indexRow+1}`: this.indexRow+1
     }
   }
 }

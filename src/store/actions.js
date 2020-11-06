@@ -9,12 +9,12 @@ export default {
     }).then( () => {
       commit('isLoaded');
       commit('setStatus');
-      dispatch('setCurrentGuess', state.row);
+      dispatch('setRow', 0);
     })
     .catch(error => { console.log(error); });
   },
-  setCurrentGuess({commit}, currentGuess) {
-    commit('setCurrentGuess', currentGuess);
+  setRow({commit}, currentRow) {
+    commit('setRow', currentRow);
   },
   addColorToCheck({commit}, {color, indexArray}) {
     commit('addColorToCheck', {color, indexArray});
@@ -23,8 +23,8 @@ export default {
     commit('resetCode');
   },
   addPegsColor({state, commit}){
-    const whitePegs = state.game.guesses[state.row - 1].white_pegs;
-    const blackPegs = state.game.guesses[state.row - 1].black_pegs;
+    const whitePegs = state.game.guesses[state.row].white_pegs;
+    const blackPegs = state.game.guesses[state.row].black_pegs;
     const failPegsNumber = 4 - (whitePegs + blackPegs);
 
     for (let index = 0; index < blackPegs; index+=1) {
@@ -46,11 +46,11 @@ export default {
     await addNewGuesses(state.game.id, data).then(result => {
       dispatch('resetCode');
       commit('updateGame', result.data);
-      dispatch('setCurrentGuess', state.row+=1);
     }).then( () => {
       commit('setStatus');
       dispatch('addPegsColor');
+      state.status == 'running' && dispatch('setRow', state.row+=1);
     })
-    .catch(error => { console.log(error); });
+    .catch(error => { console.log('sdf', error); });
   }
 }

@@ -21,3 +21,31 @@
     margin-top: 100px;
   }
 }
+
+.controls-board--status {
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: $red-color;
+
+  &.is-won {
+    color: $green-color;
+  }
+}
+
+.controls-board--status-title {
+  margin-bottom: 30px;
+}
+
+.controls-board--status-text {
+  font-size: 18px;
+  color: $text-color;
+}
+
+.controls-board--code {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: 50%;
+}

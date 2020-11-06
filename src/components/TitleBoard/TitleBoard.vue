@@ -1,7 +1,7 @@
 <template>
   <div class="title-board container">
     <h1>Mastermind</h1>
-    <div v-if="game" v-text="`#${game.reference}`"></div>
+    <div v-if="game" v-text="`#Game Reference ${game.reference}`"></div>
   </div>
 </template>
 <script>

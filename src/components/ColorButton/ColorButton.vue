@@ -41,7 +41,8 @@ export default {
     ...mapState([
       'currentColor',
       'guessRowColors',
-      'row'
+      'row',
+      'status'
     ])
   },
   created() {
@@ -67,8 +68,10 @@ export default {
       this.$emit('clicked', index);
     },
     setColor(index) {
-      this.currentColor != null && this.addColorToCheck({color: this.currentColor, indexArray: index});
-      this.colorDefined = this.currentColor;
+      if(this.row == this.indexRow && this.status == 'running') {
+        this.currentColor != null && this.addColorToCheck({color: this.currentColor, indexArray: index});
+        this.colorDefined = this.currentColor;
+      }
     },
     reset() {
       Object.assign(this.$data,this.$options.data.call(this));

@@ -1,11 +1,24 @@
 <template>
   <div class="controls-board">
-    <div v-if="game" class="controls-board--butons">
+    <div v-if="game && status == 'running'" class="controls-board--butons">
       <button @click="sentCheckGuesses()" class="controls-board--check secondary-button" :disabled="!enableCheck"><IconCheck /></button>
       <button @click="resetRow()" class="controls-board--reset secondary-button" :disabled="codeLength == 0"><IconRefresh /></button>
     </div>
     <button @click.prevent="newGame(), reset()" class="controls-board--buton primary-button">New game</button>
-    <div v-if="manageStatus" class="controls-board--status" v-text="manageTextStatus"></div>
+    <div 
+      v-if="manageStatus"
+      :class="{'is-won': status === 'won'}"
+      class="controls-board--status">
+        <div class="controls-board--status-title" v-text="manageTextStatus"></div>
+        <div class="controls-board--status-text" v-text="'Solution'"></div>
+        <div
+          v-for="(code, index) in game.secret_code"
+          :key="'color'+index"
+          :style="`background-color: ${ code };`"
+          class="controls-board--code"
+        >
+        </div>
+    </div>
   </div>
 </template>
 
@@ -22,11 +35,11 @@ export default {
       IconRefresh
     },
     computed: {
-      ...mapState({
-        code: state => state.code,
-        game: state => state.game,
-        status: state => state.status
-      }),
+      ...mapState([
+        'code',
+        'game',
+        'status'
+      ]),
       manageStatus() {
         return this.status === 'won' || this.status === 'lost'
       },

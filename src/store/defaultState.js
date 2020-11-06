@@ -6,14 +6,13 @@ export function getDefaultState() {
       'max_guesses': 5
     },
     game: null,
-    row: 0,
+    row: null,
     listColors: null,
     guessRowColors: [],
     code: [],
     currentRowPegs: [],
     rowsPegs: [],
     currentColor: null,
-    currentGuess: null,
     loaded: false,
     pegsColorOption: {
       'default': 'lightgray',

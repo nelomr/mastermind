@@ -4,7 +4,6 @@
         v-for="(row, index) in defaultConfig.max_guesses"
         :key="'row'+index"
         :indexRow="index"
-        :current="currentGuess"
         :reset="reset"
       />
     </div>
@@ -21,15 +20,9 @@ export default {
     RowBoard
   },
   computed: {
-    ...mapState({
-      defaultConfig: state => state.defaultConfig,
-      currentGuess: state => state.currentGuess
-    })
-  },
-  methods: {
-    checkRow(index) {
-      return this.currentGuess == index;
-    }
+    ...mapState([
+      'defaultConfig'
+    ])
   }
 }
 </script>
