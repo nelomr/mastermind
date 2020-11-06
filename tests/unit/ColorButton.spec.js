@@ -16,7 +16,6 @@ describe('ColorButton.vue', () => {
   
   let props;
   let computed;
-  let mutations;
   let actions;
   let store;
 
@@ -26,9 +25,6 @@ describe('ColorButton.vue', () => {
       index,
       indexRow,
       isGuessButton
-    };
-    mutations = {
-      setCurrentColor: jest.fn()
     };
     computed = {
       row() {
@@ -42,10 +38,10 @@ describe('ColorButton.vue', () => {
       }
     };
     actions = {
-      addColorToCheck: jest.fn()
+      addColorToCheck: jest.fn(),
+      setCurrentColor: jest.fn()
     };
     store = new Vuex.Store({
-      mutations,
       actions
     });
   });
@@ -98,7 +94,7 @@ describe('ColorButton.vue', () => {
 
     button().trigger('click');
     expect(getColor).toHaveBeenCalled();
-    expect(mutations.setCurrentColor).toHaveBeenCalled();
+    expect(actions.setCurrentColor).toHaveBeenCalled();
   });
 
   it('set color clicked on button guess component', () => {

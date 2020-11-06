@@ -5,12 +5,12 @@ test('Set Array code with color ordered in correct index selected', () => {
     code: [],
     guessRowColors: []
   }
-  mutations.addColorToCheck(state, {color: 'green', indexArray: 1});
+  mutations.ADD_COLOR_TO_CHECK(state, {color: 'green', indexArray: 1});
   expect(state.code).toStrictEqual([undefined, 'green']);
 
-  mutations.addColorToCheck(state, {color: 'white', indexArray: 1});
+  mutations.ADD_COLOR_TO_CHECK(state, {color: 'white', indexArray: 1});
   expect(state.code).toStrictEqual([undefined, 'white']);
 
-  mutations.addColorToCheck(state, {color: 'green', indexArray: 0});
+  mutations.ADD_COLOR_TO_CHECK(state, {color: 'green', indexArray: 0});
   expect(state.code).toStrictEqual(['green', 'white']);
 })

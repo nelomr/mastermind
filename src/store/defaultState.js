@@ -1,10 +1,8 @@
+import {defaultConfig, pegsColorOption} from '@/configurations/defaultConfig'
 export function getDefaultState() {
   return {
-    defaultConfig: {
-      'num_colors': 6,
-      'num_slots': 4, 
-      'max_guesses': 5
-    },
+    defaultConfig,
+    pegsColorOption,
     game: null,
     row: null,
     listColors: null,
@@ -14,11 +12,6 @@ export function getDefaultState() {
     rowsPegs: [],
     currentColor: null,
     loaded: false,
-    pegsColorOption: {
-      'default': 'lightgray',
-      'exact': 'black',
-      'partial': 'white'
-    },
     status: null
   }
 }
