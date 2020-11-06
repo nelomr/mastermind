@@ -10,7 +10,7 @@
 
 <script>
 import EventBus from '@/modules/event-bus';
-import { mapMutations, mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'ColorButton',
@@ -54,11 +54,9 @@ export default {
     });
   },
   methods: {
-    ...mapMutations([
-      'setCurrentColor'
-    ]),
     ...mapActions([
-      'addColorToCheck'
+      'addColorToCheck',
+      'setCurrentColor'
     ]),
     manageEvent(index) {
       this.isGuessButton ? this.setColor(index) : this.getColor(index);

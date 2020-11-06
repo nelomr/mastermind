@@ -3,24 +3,27 @@ import { initNewGame, addNewGuesses } from '@/api/apiGame';
 export default {
   async createGame({commit, dispatch, state}) {
     await initNewGame(state.defaultConfig).then(result => {
-      commit('resetState');
+      commit('RESET_STATE');
       commit('UPDATE_GAME', result);
-      commit('setListColors', result.colors);
+      commit('SET_LIST_COLORS', result.colors);
     }).then( () => {
-      commit('isLoaded');
-      commit('setStatus');
+      commit('IS_LOADED');
+      commit('SET_STATUS');
       dispatch('setRow', 0);
     })
     .catch(error => { console.log(error); });
   },
   setRow({commit}, currentRow) {
-    commit('setRow', currentRow);
+    commit('SET_ROW', currentRow);
   },
   addColorToCheck({commit}, {color, indexArray}) {
-    commit('addColorToCheck', {color, indexArray});
+    commit('ADD_COLOR_TO_CHECK', {color, indexArray});
   },
   resetCode({commit}) {
-    commit('resetCode');
+    commit('RESET_CODE');
+  },
+  setCurrentColor({commit}, color) {
+    commit('SET_CURRENT_COLOR', color);
   },
   addPegsColor({state, commit}){
     const whitePegs = state.game.guesses[state.row].white_pegs;
@@ -28,17 +31,17 @@ export default {
     const failPegsNumber = 4 - (whitePegs + blackPegs);
 
     for (let index = 0; index < blackPegs; index+=1) {
-      commit('addPegColorResponse', state.pegsColorOption.exact);
+      commit('ADD_PEG_COLOR_RESPONSE', state.pegsColorOption.exact);
     }
 
     for (let index = 0; index < whitePegs; index+=1) {
-      commit('addPegColorResponse', state.pegsColorOption.partial);
+      commit('ADD_PEG_COLOR_RESPONSE', state.pegsColorOption.partial);
     }
    
     for (let index = 0; index < failPegsNumber; index+=1) {
-      commit('addPegColorResponse', state.pegsColorOption.default)
+      commit('ADD_PEG_COLOR_RESPONSE', state.pegsColorOption.default)
     }
-    commit('setPegsRowColors');
+    commit('SET_PEGS_ROW_COLORS');
   },
   async sentCheckGuesses({dispatch, commit, state}) {
     const data = {};
@@ -47,7 +50,7 @@ export default {
       dispatch('resetCode');
       commit('UPDATE_GAME', result.data);
     }).then( () => {
-      commit('setStatus');
+      commit('SET_STATUS');
       dispatch('addPegsColor');
       state.status == 'running' && dispatch('setRow', state.row+=1);
     })

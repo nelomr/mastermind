@@ -5,39 +5,36 @@ export default {
   UPDATE_GAME(state, game) {
     state.game = game;
   },
-  resetState (state) {
+  RESET_STATE(state) {
     Object.assign(state, getDefaultState())
   },
-  setListColors(state, listColors) {
+  SET_LIST_COLORS(state, listColors) {
     state.listColors = listColors;
   },
-  isLoaded(state) {
+  IS_LOADED(state) {
     state.loaded = true;
   },
-  setCurrentColor(state, color) {
+  SET_CURRENT_COLOR(state, color) {
     state.currentColor = color;
   },
-  setRow(state, index) {
+  SET_ROW(state, index) {
     state.row = index;
   },
-  setCode(state, code) {
-    state.code = code;
-  },
-  setStatus(state){
+  SET_STATUS(state){
     state.status = state.game.status;
   },
-  resetCode(state) {
+  RESET_CODE(state) {
     state.code = [];
     state.guessRowColors = [];
   },
-  addPegColorResponse(state, color) {
+  ADD_PEG_COLOR_RESPONSE(state, color) {
     state.currentRowPegs.push(color);
   },
-  setPegsRowColors(state) {
+  SET_PEGS_ROW_COLORS(state) {
     state.rowsPegs.push(state.currentRowPegs);
     state.currentRowPegs = [];
   },
-  addColorToCheck(state, {color, indexArray}) {
+  ADD_COLOR_TO_CHECK(state, {color, indexArray}) {
     state.code[indexArray] = color;
     Vue.set(state, 'code', [...state.code]);
     state.guessRowColors.splice(0,1, state.code);
