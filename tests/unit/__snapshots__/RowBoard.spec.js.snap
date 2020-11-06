@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RowBoard.vue renders the component list 1`] = `
+<div class="row-board">
+  <div class="row-board--index">NaN</div>
+  <div class="row-board--guesses">
+    <colorbutton-stub color="lightgray" index="0" indexrow="0" isguessbutton="true"></colorbutton-stub>
+    <colorbutton-stub color="lightgray" index="1" indexrow="0" isguessbutton="true"></colorbutton-stub>
+    <colorbutton-stub color="lightgray" index="2" indexrow="0" isguessbutton="true"></colorbutton-stub>
+    <colorbutton-stub color="lightgray" index="3" indexrow="0" isguessbutton="true"></colorbutton-stub>
+  </div>
+  <pegslist-stub numslots="4" indexrow="0"></pegslist-stub>
+</div>
+`;

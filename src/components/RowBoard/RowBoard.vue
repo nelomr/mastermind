@@ -3,7 +3,7 @@
     <div class="row-board--index" v-text="setIndexRow" />
     <div class="row-board--guesses">
       <ColorButton 
-        v-for="(color, index) in defaultConfig.num_slots"
+        v-for="(color, index) in numSlots"
         :key="'color'+index"
         :isGuessButton="true"
         :index="index"
@@ -11,7 +11,7 @@
       />
     </div>
     <PegsList 
-      :numSlots="defaultConfig.num_slots"
+      :numSlots="numSlots"
       :indexRow="indexRow"
     />
   </div>
@@ -35,11 +35,10 @@ export default {
     PegsList
   },
   computed: {
-    ...mapState([
-      'defaultConfig',
-      'row',
-      'code'
-    ]),
+    ...mapState({
+      numSlots: state => state.defaultConfig.num_slots,
+      row: 'row'
+    }),
     setIndexRow() {
       return this.indexRow < 9 ? `0${this.indexRow+1}`: this.indexRow+1
     }

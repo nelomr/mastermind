@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleBoard.vue renders the component list 1`] = `
+<div class="title-board container">
+  <h1>Mastermind</h1>
+  <!---->
+</div>
+`;

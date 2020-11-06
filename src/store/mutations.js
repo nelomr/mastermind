@@ -2,7 +2,7 @@ import Vue from 'vue';
 import {getDefaultState} from '@/store/defaultState';
 
 export default {
-  updateGame(state, game) {
+  UPDATE_GAME(state, game) {
     state.game = game;
   },
   resetState (state) {

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainBoard.vue renders the component no button list 1`] = `
+<div class="main-board">
+  <rowboard-stub indexrow="0"></rowboard-stub>
+  <rowboard-stub indexrow="1"></rowboard-stub>
+  <rowboard-stub indexrow="2"></rowboard-stub>
+  <rowboard-stub indexrow="3"></rowboard-stub>
+  <rowboard-stub indexrow="4"></rowboard-stub>
+</div>
+`;

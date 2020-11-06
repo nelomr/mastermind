@@ -25,8 +25,6 @@ export default {
   },
   computed: {
     ...mapState({
-      row: state => state.row,
-      pegsArray: state => state.pegsColors,
       pegsColorOption: state => state.pegsColorOption.partial
     }),
     newColor() {

@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+import EventBus from '@/modules/event-bus';
 import ColorButton from '@/components/ColorButton/ColorButton';
 import { mapState } from 'vuex';
 
@@ -24,6 +25,11 @@ export default {
         indexSelected: null
       }
     },
+    created() {
+      EventBus.$on('reset', () => {
+        this.reset();
+      });
+    },
     computed: {
       ...mapState([
         'listColors',
@@ -33,6 +39,9 @@ export default {
     methods: {
       onClickButton(value) {
         this.indexSelected = value;
+      },
+      reset() {
+        Object.assign(this.$data,this.$options.data.call(this));
       }
     }
 }

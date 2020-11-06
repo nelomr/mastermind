@@ -4,7 +4,7 @@ export default {
   async createGame({commit, dispatch, state}) {
     await initNewGame(state.defaultConfig).then(result => {
       commit('resetState');
-      commit('updateGame', result);
+      commit('UPDATE_GAME', result);
       commit('setListColors', result.colors);
     }).then( () => {
       commit('isLoaded');
@@ -45,7 +45,7 @@ export default {
     data.code = state.code;
     await addNewGuesses(state.game.id, data).then(result => {
       dispatch('resetCode');
-      commit('updateGame', result.data);
+      commit('UPDATE_GAME', result.data);
     }).then( () => {
       commit('setStatus');
       dispatch('addPegsColor');

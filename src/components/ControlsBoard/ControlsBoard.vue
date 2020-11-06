@@ -1,10 +1,32 @@
 <template>
   <div class="controls-board">
-    <div v-if="game && status == 'running'" class="controls-board--butons">
-      <button @click="sentCheckGuesses()" class="controls-board--check secondary-button" :disabled="!enableCheck"><IconCheck /></button>
-      <button @click="resetRow()" class="controls-board--reset secondary-button" :disabled="codeLength == 0"><IconRefresh /></button>
+    <div 
+      v-if="game && status == 'running'"
+      class="controls-board--buttons"
+    >
+      <button 
+        @click="sentCheckGuesses()"
+        class="controls-board--check secondary-button"
+        :disabled="!enableCheck"
+      >
+        <IconCheck />
+      </button>
+      <button 
+        @click="resetRow()"
+        class="controls-board--reset secondary-button"
+        :disabled="codeLength == 0"
+      >
+        <IconRefresh />
+      </button>
     </div>
-    <button @click.prevent="newGame(), reset()" class="controls-board--buton primary-button">New game</button>
+
+    <button 
+      @click.prevent="createGame(), reset()"
+      class="controls-board--button primary-button"
+    >
+      New game
+    </button>
+
     <div 
       v-if="manageStatus"
       :class="{'is-won': status === 'won'}"
@@ -16,8 +38,7 @@
           :key="'color'+index"
           :style="`background-color: ${ code };`"
           class="controls-board--code"
-        >
-        </div>
+        />
     </div>
   </div>
 </template>
@@ -58,11 +79,11 @@ export default {
       }
     },
     methods: {
-    ...mapActions({
-      newGame: 'createGame',
-      sentCheckGuesses: 'sentCheckGuesses',
-      resetCode: 'resetCode'
-    }),
+    ...mapActions([
+      'createGame',
+      'sentCheckGuesses',
+      'resetCode'
+    ]),
     reset() {
       EventBus.$emit('reset');
     },

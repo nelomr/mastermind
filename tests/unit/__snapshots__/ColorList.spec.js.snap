@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorList.vue renders color buttons list  1`] = `
+<div class="color-list">
+  <colorbutton-stub color="red" index="0" indexrow="0" class=""></colorbutton-stub>
+  <colorbutton-stub color="blue" index="1" indexrow="0" class=""></colorbutton-stub>
+  <colorbutton-stub color="green" index="2" indexrow="0" class=""></colorbutton-stub>
+  <colorbutton-stub color="yellow" index="3" indexrow="0" class=""></colorbutton-stub>
+  <colorbutton-stub color="orange" index="4" indexrow="0" class=""></colorbutton-stub>
+  <colorbutton-stub color="white" index="5" indexrow="0" class=""></colorbutton-stub>
+</div>
+`;
+
+exports[`ColorList.vue renders the component 1`] = `<div class="color-list"></div>`;

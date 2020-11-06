@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlsBoard.vue renders the component no button list 1`] = `
+<div class="controls-board">
+  <!----> <button class="controls-board--button primary-button">
+    New game
+  </button>
+  <!---->
+</div>
+`;
