@@ -34,7 +34,7 @@
         <div class="controls-board--status-title" v-text="manageTextStatus"></div>
         <div class="controls-board--status-text" v-text="'Solution'"></div>
         <div
-          v-for="(code, index) in game.secret_code"
+          v-for="(code, index) in game.secretCode"
           :key="'color'+index"
           :style="`background-color: ${ code };`"
           class="controls-board--code"
